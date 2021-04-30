@@ -20,15 +20,15 @@ Configurations are copied to NXOS switches using SCP and then configuration is r
 with candidate configuration. Cisco IOS routers are configured using Ansible IOS Network
 modules.
 
-[Setup](#setup)
-[Variables](#variables)
-[Topologies](#topologies)
-[Playbooks](#playbooks)
+[Setup](#setup)  
+[Variables](#variables)  
+[Topologies](#topologies)  
+[Playbooks](#playbooks)  
 
 ## Setup
-Playbook was tested on Cisco NXOS and IOS devices running in CML 2.1.
-    * Cisco Nexus 9Kv, version 9.2(3)
-    * Cisco IOSv, version 15.8(3)M2
+Playbook was tested on Cisco NXOS and IOS devices running in CML 2.1.  
+    * Cisco Nexus 9Kv, version 9.2(3)  
+    * Cisco IOSv, version 15.8(3)M2  
 
 Control machine information:
 ```
@@ -57,12 +57,12 @@ where Ansible control machine is located.
 ## Variables 
 Variable files contain all information needed to configure VXLAN EVPN IP Fabric. 
 
-`group_vars`
-    * *all.yml* - conains username and password to logon to devices 
-    * *border_leafs.yml, spines.yml, leafs.yml* - contains variable to set group name
-    * *ios_routers.yml, nxos_switches.yml* - contains variables for network OS and network cli 
+`group_vars`  
+    * **all.yml** - conains username and password to logon to devices   
+    * **border_leafs.yml, spines.yml, leafs.yml** - contains variable to set group name  
+    * **ios_routers.yml, nxos_switches.yml** - contains variables for network OS and network cli   
 
-`host_vars`
+`host_vars`  
     * Variable for each host with values to configure devices
 
 Spine Example
@@ -179,17 +179,17 @@ vrfs:
 
 ## Topologies 
 
-![IP Fabric](images/ip_fabric.jpg)
+![IP Fabric](images/ip_fabric.jpg)  
 ![Mgmt Connections](images/mgmt_connections.jpg)
 
 ## Playbooks
-`vxlan-evpn_deploy.yml`
-Playbook uses tasks to do the following:
-    * Create config files using `host_vars` and jinja2 templates
-    * Copies candidate config to NXOS devices using SCP 
-    * Performs Config-Replace operation to configure devices 
-    * Uses Ansible IOS Network Modules to configure IOS Host Routers
-    * Cleans up temp config files
+`vxlan-evpn_deploy.yml`  
+Playbook uses tasks to do the following:  
+    * Create config files using `host_vars` and jinja2 templates  
+    * Copies candidate config to NXOS devices using SCP   
+    * Performs Config-Replace operation to configure devices   
+    * Uses Ansible IOS Network Modules to configure IOS Host Routers  
+    * Cleans up temp config files  
 
-`backup_configs.yml`
+`backup_configs.yml`  
 Playbook performs device backup for IOS and NXOS devices
