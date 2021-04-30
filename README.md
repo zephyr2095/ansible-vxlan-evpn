@@ -27,8 +27,8 @@ modules.
 
 ## Setup
 Playbook was tested on Cisco NXOS and IOS devices running in CML 2.1.  
-    * Cisco Nexus 9Kv, version 9.2(3)  
-    * Cisco IOSv, version 15.8(3)M2  
+* Cisco Nexus 9Kv, version 9.2(3)  
+* Cisco IOSv, version 15.8(3)M2  
 
 Control machine information:
 ```
@@ -58,12 +58,12 @@ where Ansible control machine is located.
 Variable files contain all information needed to configure VXLAN EVPN IP Fabric. 
 
 `group_vars`  
-    * **all.yml** - conains username and password to logon to devices   
-    * **border_leafs.yml, spines.yml, leafs.yml** - contains variable to set group name  
-    * **ios_routers.yml, nxos_switches.yml** - contains variables for network OS and network cli   
+* **all.yml** - conains username and password to logon to devices   
+* **border_leafs.yml, spines.yml, leafs.yml** - contains variable to set group name  
+* **ios_routers.yml, nxos_switches.yml** - contains variables for network OS and network cli   
 
-`host_vars`  
-    * Variable for each host with values to configure devices
+`host_vars`
+* Variable for each host with values to configure devices
 
 Spine Example
 ```
