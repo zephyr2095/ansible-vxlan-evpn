@@ -20,10 +20,10 @@ Configurations are copied to NXOS switches using SCP and then configuration is r
 with candidate configuration. Cisco IOS routers are configured using Ansible IOS Network
 modules.
 
-    * [Setup](#setup)
-    * [Variables](#variables)
-    * [Topologies](#topologies)
-    * [Playbooks](#playbooks)
+[Setup](#setup)
+[Variables](#variables)
+[Topologies](#topologies)
+[Playbooks](#playbooks)
 
 ## Setup
 Playbook was tested on Cisco NXOS and IOS devices running in CML 2.1.
@@ -58,9 +58,9 @@ where Ansible control machine is located.
 Variable files contain all information needed to configure VXLAN EVPN IP Fabric. 
 
 `group_vars`
-    * ***all.yml*** - conains username and password to logon to devices 
-    * ***border_leafs.yml, spines.yml, leafs.yml*** - contains variable to set group name
-    * ***ios_routers.yml, nxos_switches.yml - contains variables for network OS and network cli 
+    * *all.yml* - conains username and password to logon to devices 
+    * *border_leafs.yml, spines.yml, leafs.yml* - contains variable to set group name
+    * *ios_routers.yml, nxos_switches.yml* - contains variables for network OS and network cli 
 
 `host_vars`
     * Variable for each host with values to configure devices
