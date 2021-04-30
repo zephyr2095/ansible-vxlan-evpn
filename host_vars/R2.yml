@@ -1,0 +1,16 @@
+---
+# Host variable file for R2
+
+vrfs:
+  - { vrf: Accounting, rd: "100:1" }
+  - { vrf: Sales, rd: "200:1" }
+
+static_routes:
+  - { ip_addr: 0.0.0.0, mask: 0.0.0.0, next_hop: 10.100.1.1, vrf: Accounting}
+  - { ip_addr: 0.0.0.0, mask: 0.0.0.0, next_hop: 10.200.1.1, vrf: Sales}
+
+interfaces:
+  - { interface: GigabitEthernet0/1, tag: 100, ip_addr: 10.100.1.200, mask: 255.255.255.0, vrf: Accounting }
+  - { interface: GigabitEthernet0/1, tag: 200, ip_addr: 10.200.1.200, mask: 255.255.255.0, vrf: Sales }
+
+...

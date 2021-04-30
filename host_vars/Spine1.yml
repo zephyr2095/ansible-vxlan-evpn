@@ -1,0 +1,39 @@
+---
+# Host variable file for Spine1
+
+features:
+  - ospf
+  - bgp
+  - vn-segment-vlan-based
+  - nv overlay
+  - scp-server
+
+mgmt_ip: 192.168.1.200
+mgmt_mask: 24
+mgmt_gateway: 192.168.1.1
+
+l3_interfaces:
+  - { interface: Ethernet1/1, description: LINK_TO_LEAF1 }
+  - { interface: Ethernet1/2, description: LINK_TO_LEAF2 }
+  - { interface: Ethernet1/3, description: LINK_TO_BORDER_SPINE1 }
+
+loopbacks:
+  - { interface: loopback0, description: UNDERLAY_LOOPBACK, ip_addr: 172.32.32.1/32 }
+  - { interface: loopback1, description: OVERLAY_LOOPBACK, ip_addr: 172.62.62.1/32 }
+
+ospf_process_id: UNDERLAY
+ospf_router_id: "172.32.32.1"
+ospf_area: "0.0.0.0"
+
+bgp_asn: "65513"
+bgp_router_id: "172.62.62.1"
+
+address_families:
+  - { afi: l2vpn, safi: evpn }
+
+bgp_neighbors:
+  - { neighbor: "172.62.62.3", remote_as: "65513", description: LEAF1_PEER, update_source: loopback1 }
+  - { neighbor: "172.62.62.4", remote_as: "65513", description: LEAF2_PEER, update_source: loopback1 }
+  - { neighbor: "172.62.62.5", remote_as: "65513", description: BORDER_LEAF1_PEER, update_source: loopback1 }
+
+...

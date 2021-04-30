@@ -1,0 +1,17 @@
+---
+# Playbook to backup Cisco NXOS and IOS devices
+
+- name: "BACKUP NXOS AND IOS DEVICE CONFIGS"
+  hosts: all
+
+  tasks:
+  - name: "BACKUP NXOS DEVICES"
+    nxos_config:
+      backup: yes
+    when: ansible_network_os == "nxos"
+  
+  - name: "BACKUP IOS DEVICES"
+    ios_config:
+      backup: yes
+    when: ansible_network_os == "ios"
+...

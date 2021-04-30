@@ -1,0 +1,18 @@
+---
+# SCP candidate config to device
+# Use config replace to replace config with candidate config
+
+- name: "COPY CANDIDATE CONFIG TO DEVICE"
+  nxos_file_copy:
+    local_file: "configs/{{ inventory_hostname }}.conf"
+    remote_file: candidate_config.txt
+    vrf: management
+  when: ansible_network_os == "nxos"
+
+- name: "REPLACE RUNNING CONFIG WITH CANDIDATE CONFIG"
+  nxos_config:
+    replace_src: "bootflash:candidate_config.txt"
+    replace: config
+  when: ansible_network_os == "nxos"
+  
+...

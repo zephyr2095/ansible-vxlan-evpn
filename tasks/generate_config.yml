@@ -1,0 +1,18 @@
+---
+# Task to generate NXOS Spine/Leaf/Border Leaf Config
+# Type of config generated is driven based on ansible_network_group group_vars variable
+
+- name: "CREATE CONFIGS FOLDER"
+  file:
+    path: "./configs"
+    recurse: yes
+    state: directory
+  changed_when: false
+
+- name: "GENERATE NXOS SPINE/LEAF/BORDER LEAF CONFIGURATION"
+  template:
+    src: "templates/{{ansible_network_os }}_{{ ansible_network_group}}_template.j2"
+    dest: "configs/{{ inventory_hostname }}.conf"
+  changed_when: false
+  when: ansible_network_os == "nxos"
+...

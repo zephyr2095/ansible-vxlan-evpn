@@ -1,0 +1,9 @@
+---
+# Delete temp config files
+
+- name: "CLEANUP TEMP CONFIG FILES"
+  file:
+    path: "./configs/{{ inventory_hostname }}.conf"
+    state: absent
+  changed_when: false
+...

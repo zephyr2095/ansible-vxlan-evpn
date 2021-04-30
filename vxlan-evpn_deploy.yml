@@ -1,0 +1,26 @@
+---
+# Playbook to deploy VXLAN/EVPN Fabric
+# Uses tasks to do the following:
+#
+# 1. Generate configuration based on device type (spine/leaf/border leaf)
+# 2. Push configuration to device using NXOS galaxy module
+# 3. Configure IOS Host routers which act as end devics in fabric
+# 4. Deletes temp config files
+
+- name: "NXOS VXLAN EVPN FABRIC DEPLOY"
+  hosts: all
+
+  tasks:
+    - name: "INCLUDE >> GENERATE CONFIGURATION"
+      include_tasks: "tasks/generate_config.yml"
+    
+    - name: "INCLUDE >> PUSH CONFIG"
+      include_tasks: "tasks/push_config.yml"
+    
+    - name: "INCLUDE >> CONFIGURE IOS HOST ROUTERS"
+      include_tasks: "tasks/host_routers.yml"
+    
+    - name: "INCLUDE >> CLEANUP TEMP CONFIG FILES"
+      include_tasks: "tasks/cleanup.yml"
+      
+...

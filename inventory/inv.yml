@@ -1,0 +1,41 @@
+---
+# Ansible inventory file
+all:
+  children:
+    routers:
+      children:
+        ios_routers:
+          children:
+            host_routers:
+              hosts:
+                R1:
+                  ansible_host: 192.168.1.204
+                R2:
+                  ansible_host: 192.168.1.205
+            core_routers:
+              hosts:
+                R3:
+                  ansible_host: 192.168.1.206
+
+    switches:
+      children:
+        nxos_switches:
+          children:
+            spines:
+              hosts:
+                Spine1:
+                  ansible_host: 192.168.1.200
+                Spine2:
+                  ansible_host: 192.168.1.201
+            leafs:
+              hosts:
+                Leaf1:
+                  ansible_host: 192.168.1.202
+                Leaf2:
+                  ansible_host: 192.168.1.203       
+            border_leafs:
+              hosts:
+                BorderLeaf1:
+                  ansible_host: 192.168.1.207
+
+...

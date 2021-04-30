@@ -1,0 +1,5 @@
+---
+ansible_network_os: "nxos"
+ansible_connection: "network_cli"
+ansible_command_timeout: 300
+...

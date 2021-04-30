@@ -1,0 +1,32 @@
+---
+- name: "CONFIGURE IOS HOST ROUTERS"
+  block:
+  - name: "CONFIGURE HOSTNAME"
+    ios_system:
+      hostname: "{{ inventory_hostname }}"
+  
+  - name: "CONFIGURE VRFs"
+    ios_vrf:
+      name: "{{ item.vrf }}"
+      rd: "{{ item.rd }}"
+    with_items: "{{ vrfs }}"
+
+  - name: "CONFIGURE STATIC ROUTES"
+    ios_static_route:
+      prefix: "{{ item.ip_addr }}"
+      mask: "{{ item.mask }}"
+      next_hop: "{{ item.next_hop }}"
+      vrf: "{{ item.vrf }}"
+    with_items: "{{ static_routes }}"
+
+  - name: "CONFIGURE INTERFACES"
+    ios_config:
+      lines:
+        - "encapsulation dot1q {{ item.tag }}"
+        - "vrf forwarding {{ item.vrf }}"
+        - "ip address {{ item.ip_addr }} {{ item.mask }}"
+        - "no shutdown"
+      parents: "interface {{ item.interface }}.{{ item.tag }}"
+    with_items: "{{ interfaces }}"
+  when: inventory_hostname in groups['host_routers']
+...
