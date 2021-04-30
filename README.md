@@ -185,11 +185,11 @@ vrfs:
 ## Playbooks
 `vxlan-evpn_deploy.yml`  
 Playbook uses tasks to do the following:  
-    * Create config files using `host_vars` and jinja2 templates  
-    * Copies candidate config to NXOS devices using SCP   
-    * Performs Config-Replace operation to configure devices   
-    * Uses Ansible IOS Network Modules to configure IOS Host Routers  
-    * Cleans up temp config files  
+* Create config files using `host_vars` and jinja2 templates  
+* Copies candidate config to NXOS devices using SCP   
+* Performs Config-Replace operation to configure devices   
+* Uses Ansible IOS Network Modules to configure IOS Host Routers  
+* Cleans up temp config files  
 
 `backup_configs.yml`  
 Playbook performs device backup for IOS and NXOS devices
